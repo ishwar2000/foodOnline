@@ -52,6 +52,7 @@ def restaurant(request, id):
         cart_items = userCart.objects.filter(user=request.user)
     context = {
         "categories":categories,
+        "vendor":selectedVendor,
         "cart_items":cart_items
     }
     return render(request, "user/restaurantDetails.html", context)

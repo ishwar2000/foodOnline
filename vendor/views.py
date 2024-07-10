@@ -32,7 +32,7 @@ def registerVendor(request):
             Vendor.userProfile = UserProfile
             Vendor.save()
             # send_verification
-            send_verification_link(request, User)
+            # send_verification_link(request, User)
             return redirect("login")
         else:
 

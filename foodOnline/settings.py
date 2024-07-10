@@ -81,23 +81,23 @@ WSGI_APPLICATION = 'foodOnline.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER':'postgres.uruhugkfwgdofgmiguum',
-        'PASSWORD':'y240Nq2QrPZV6pxg',
-        'HOST' : 'aws-0-ap-southeast-1.pooler.supabase.com',
-        'PORT' : '6543'
-    }
-}
-
 # DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         }
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER':'postgres',
+#         'PASSWORD':'TtVeIpRHyHXWZcGWimMUiSYyrWeUKcjW',
+#         'HOST' : 'roundhouse.proxy.rlwy.net',
+#         'PORT' : '18666'
 #     }
+# }
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -157,4 +157,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'vishupatgar12345@gmail.com'
-EMAIL_HOST_PASSWORD = 'dqerknvyvypqgadh'
+EMAIL_HOST_PASSWORD = 'igarqyfnvotpyhxi'

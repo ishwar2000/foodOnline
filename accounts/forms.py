@@ -3,8 +3,8 @@ from .models import user, userProfile
 from .validators import allow_extension_validatotr
 
 class registerUserForm(forms.ModelForm):
-    password = forms.CharField(max_length=30)
-    confirmPassword = forms.CharField(max_length=30)
+    password = forms.CharField(max_length=30,widget=forms.PasswordInput())
+    confirmPassword = forms.CharField(max_length=30,widget=forms.PasswordInput())
     class Meta:
         model = user
         fields = ["first_name","last_name","username","email","phone_number"]

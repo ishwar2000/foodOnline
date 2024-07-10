@@ -13,7 +13,7 @@ def send_verification_link(request, user):
                                 "uid":urlsafe_base64_encode(force_bytes(user.pk)),
                                 "token":default_token_generator.make_token(user)})
     toMail = user.email
-    print(message, toMail)
+    # print(message, toMail)
     mail = EmailMessage(mailSubject, message, to=[toMail], from_email="Food Online")
     mail.content_subtype = "html"
     mail.send()
@@ -26,7 +26,7 @@ def sendResetToken(request, user):
                                 "uid":urlsafe_base64_encode(force_bytes(user.pk)),
                                 "token":default_token_generator.make_token(user)})
     toMail = user.email
-    print(message)
+    # print(message)
     mail = EmailMessage(mailSubject, message, to=[toMail], from_email="Food Online")
     mail.content_subtype = "html"
     mail.send()
@@ -37,7 +37,7 @@ def vendorApproveStatus(mailSubject, isApproved, user):
                                 "isApproved":isApproved 
                                 })
     toMail = user.email
-    print(message)
+    # print(message)
     mail = EmailMessage(mailSubject, message, to=[toMail], from_email="Food Online")
     mail.content_subtype = "html"
-    mail.send()
+    # mail.send()
