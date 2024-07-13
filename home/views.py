@@ -244,3 +244,16 @@ def checkout(request):
         "form":form
     }
     return render(request, "user/checkout.html",context)
+
+def search(request):
+    if request.method == "POST":
+        if request.POST["name"]=="" :
+            vendors = vendor.objects.filter(is_approved = True, user__is_active = True)
+        else:
+            vendors = vendor.objects.filter(is_approved = True, user__is_active = True, vendor_name__icontains=request.POST["name"])
+    vendor_count = vendors.count()
+    context = {
+        "vendors":vendors,
+        "vendor_count":vendor_count
+    }
+    return render(request, "user/marketPlace.html", context)
