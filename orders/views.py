@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import orderForm
-from .models import Payment, OrderedFood
+from .models import Payment, OrderedFood, Order
 from accounts.context_processor import getTotal
 from .utils import getOrderNumber
 from home.models import userCart
@@ -30,11 +30,12 @@ def placeOrder(request):
             # print(request.POST)
             payModel = Payment()
             payModel.user = request.user
-            payModel.transaction_id = '12485'
+            payModel.transaction_id = '12485' + form.order_number
             payModel.amount = amounts['grand_total']
             payModel.save()
-
-            
+            form.payment = payModel
+            form.save()
+            request.session['oid'] = form.id
 
             for item in cart_items:
                 userOrder = OrderedFood()
@@ -46,11 +47,15 @@ def placeOrder(request):
                 userOrder.price = item.foodItem.price * item.quantity
                 userOrder.amount = amounts['grand_total']
                 userOrder.save()
+            
+            
                 
             context = {
                 "cart_items":cart_items,
                 "order":form
             }
+
+            
             return render(request, "user/placeOrder.html", context)
         else:
             print(form1.errors)
@@ -66,7 +71,15 @@ def placeOrder(request):
 
 @login_required(login_url='login')
 def orderConfirm(request):
-    context = {
+    cart_items = userCart.objects.filter(user=request.user)
+    cart_items.delete()
 
+    oid =  request.session.get('oid')
+    userOrder = Order.objects.get(id=oid)
+    ordered_food = OrderedFood.objects.filter(order = userOrder)
+    
+    context = {
+        "order":userOrder,
+        "ordered_food" : ordered_food
     }
     return render(request, "user/orderConfirmation.html",context)
