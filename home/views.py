@@ -223,7 +223,8 @@ def deleteCart(request,id):
 def checkout(request):
     cart_items = userCart.objects.filter(user=request.user)
     form = orderForm()
-
+    if len(cart_items) <= 0:
+        return redirect("marketPlace")
     user_profile = userProfile.objects.get(user=request.user)
     default_values = {
         'first_name': request.user.first_name,

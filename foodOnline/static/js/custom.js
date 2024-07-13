@@ -81,10 +81,11 @@ $(document).ready(function() {
 
     // delete cart item
     $('.delete_cart').on('click',function(e){
-        console.log(1);
+        
         e.preventDefault();
         var id = $(this).attr("data-id");
         var url = $(this).attr("data-url");
+        console.log("checkout-item-"+id);
         var data = {
             foodId : id,
         };
@@ -94,7 +95,7 @@ $(document).ready(function() {
             data:data,
             success : function(response){
                 console.log(response)
-                document.getElementById("cart-item-"+id).remove()
+                document.getElementById("checkout-item-"+id).remove()
                 $('#cart_counter').html(response.cartItem.cartCout);
                 // check if cart empty
                 
